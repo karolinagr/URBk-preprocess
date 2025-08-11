@@ -1,0 +1,14 @@
+# IDE
+.idea/
+
+# Virtual environment
+.venv/
+
+# Dane wejściowe SpaceNet
+SN2_buildings_train_AOI_3_Paris/
+#SN3_roads_train_AOI_3_Paris/
+dataset_paris_small/
+
+# Pliki tymczasowe
+__pycache__/
+*.pyc
