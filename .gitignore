@@ -6,8 +6,11 @@
 
 # Dane wejściowe SpaceNet
 SN2_buildings_train_AOI_3_Paris/
-#SN3_roads_train_AOI_3_Paris/
+SN3_roads_train_AOI_3_Paris/
 dataset_paris_small/
+dataset_paris_all/
+dataset_paris_patches/
+dataset_paris_bbox/
 
 # Pliki tymczasowe
 __pycache__/
