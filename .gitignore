@@ -1,17 +1,23 @@
-# IDE
+# OS/IDE
 .idea/
+.vscode/
+.DS_Store
 
 # Virtual environment
 .venv/
+.env/
 
-# Dane wejściowe SpaceNet
+# Data inputs/outputs 
 SN2_buildings_train_AOI_3_Paris/
 SN3_roads_train_AOI_3_Paris/
-dataset_paris_small/
-dataset_paris_all/
-dataset_paris_patches/
-dataset_paris_bbox/
+AOI_3_Paris_Test_public/
+dataset_paris_*/
 
-# Pliki tymczasowe
-__pycache__/
+# Python
+__pycache__/ 
 *.pyc
+
+# Checkpoints
+*.pt
+*.pth
+*.log
