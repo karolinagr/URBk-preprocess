@@ -4,7 +4,7 @@ such as building footprint detection in Paris. The output is a paired dataset of
 ready for training segmentation models (e.g., U-Net).
 
 ## Project Scope
-This preprocessing stage corresponds to **Step 1** of the full URBkaro_AI project:  
+This preprocessing stage corresponds to **Step 1** of the full URBk_AI project:  
 > Converting raw SpaceNet satellite imagery and building footprint data into a machine-learning-friendly format.
 
 The output dataset will be used for:
@@ -14,18 +14,31 @@ The output dataset will be used for:
 ## Folder Structure
 ```
 URBk_AI_preprocess/
-├── preprocess_spacenet_paris.py   # Main preprocessing script
+├── preprocess_dataset.py    # Main preprocessing script
+├── preprocess_utils.py 
+├── config.py
+├── check_masks.py  
 ├── .gitignore
 ├── README.md
+├── requirements.txt
+├── requirements_full.txt  
 │
-├── dataset_paris_small/           # Output dataset (sample, images + masks) [IGNORED by Git]
+├── dataset_paris_patches/    # Output dataset (sample, images + masks) [IGNORED by Git]
 │   ├── images/
-│   └── masks/
+│   ├── masks/
+│   ├── viz/
+│   └── manifest.json
 │
-└── SN2_buildings_train_AOI_3_Paris/   # Raw SpaceNet data [IGNORED by Git]
-    └── AOI_3_Paris_Train
-        ├── RGB-PanSharpen/
-        └── geojson/buildings/
+└── SN2_buildings_train_AOI_3_Paris/    # Raw SpaceNet data [IGNORED by Git]
+│   └── AOI_3_Paris_Train
+│       ├── geojson/buildings/ 
+│       ├── RGB-PanSharpen/
+│       └── summaryData/AOI_3_Paris_Building_Solution.csv
+│
+└──SN3_roads_train_AOI_3_Paris/    # Raw SpaceNet data [IGNORED by Git]
+    └── AOI_3_Paris
+        ├── geojson_roads/ 
+        └── PS-RGB/
 ```
 ## Requirements
 Minimal required packages:\
@@ -34,23 +47,31 @@ pandas\
 tqdm\
 shapely\
 rasterio\
-opencv-python\
+opencv-python
 
-Install them via:\
-`python -m pip install -r requirements.txt`
+Use `requirements.txt` for a clean install of just the essentials.
+Use `requirements_full.txt` if you need an exact replica of my development environment.
 
 ## How to Use
 1. Download SpaceNet Data
 - Go to: https://spacenet.ai/sn2-buildings-dataset/
-- Download the `SN2_buildings_train_AOI_3_Paris package`.
+- Download the `SN2_buildings_train_AOI_3_Paris package` and `SN3_roads_train_AOI_3_Paris`.
 - Extract it into the root of this preprocessing project:
 `preprocessing/SN2_buildings_train_AOI_3_Paris/`
+`preprocessing/SN3_roads_train_AOI_3_Paris/`
 
-The folder should contain:
+The folders should contain:
 ```
 SN2_buildings_train_AOI_3_Paris/
 ├── RGB-PanSharpen/
 └── geojson/buildings/
+```
+
+```
+SN3_roads_train_AOI_3_Paris/    
+└── AOI_3_Paris
+   ├── geojson_roads/ 
+   └── PS-RGB/
 ```
 
 2. (Optional) Create a Virtual Environment
@@ -70,14 +91,20 @@ The script will:
 
 4. Output Example
 ```
-dataset_paris_small/
+dataset_paris_patches/
 ├── images/
-│   ├── RGB-PanSharpen_AOI_3_Paris_img10.tif
+│   ├── RGB-PanSharpen_AOI_3_Paris_img3_128_0.png
 │   ├── ...
 │
 └── masks/
-    ├── RGB-PanSharpen_AOI_3_Paris_img10_mask.png
-    ├── ...
+│   ├── RGB-PanSharpen_AOI_3_Paris_img3_128_0.png
+│   ├── ...
+│
+└── viz/
+│   ├── RGB-PanSharpen_AOI_3_Paris_img3_128_0.png
+│   ├── ...
+│
+└── manifest.json
 ```
 Each image in `images/` has a corresponding binary mask in `masks/`.
 
