@@ -14,6 +14,3 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Run Claude code review
-        uses: anthropics/claude-github-app/.github/actions/review@v1
