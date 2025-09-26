@@ -16,4 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Claude code review
-        uses: anthropics/claude-github-app/.github/actions/review@v1
+        uses: anthropics/claude-code-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: "/review"
